@@ -1,14 +1,18 @@
-#include <iostream>
-#include "Atividade.h"
-#include <string>
-using namespace std;
+#ifndef ATIVIDADEDEPRAZOFIXO_H
+#define ATIVIDADEDEPRAZOFIXO_H
 
-class AtividadeDePrazoFixo : public Atividade{
+#include "Atividade.h"
+
+class AtividadeDePrazoFixo : public Atividade {
     public:
         AtividadeDePrazoFixo(string nome, int dias);
         virtual ~AtividadeDePrazoFixo();
 
         virtual int getPrazo();
+        virtual int getDuracao();
     protected:
         int dias;
+    private:
 };
+
+#endif // ATIVIDADEDEPRAZOFIXO_H

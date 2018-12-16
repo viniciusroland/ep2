@@ -2,7 +2,7 @@
 #define PESSOA_H
 
 #include "Recurso.h"
-#include <exception>
+#include <stdexcept>
 
 class Pessoa : public Recurso {
     public:

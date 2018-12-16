@@ -18,7 +18,6 @@ Pessoa::Pessoa(string nome, int horasDiarias) : Recurso(nome) {
         throw new invalid_argument ("Dados invalidos");
     } else {
         this->horasDiarias = horasDiarias;
-        this->valorPorHora = Pessoa::valorPorHoraPadrao;
         recebeuValorPadrao = true;
     }
 }
@@ -27,6 +26,9 @@ Pessoa::~Pessoa() {
 }
 
 double Pessoa::getValorPorHora() {
+    if (recebeValorPadrao()) {
+        return Pessoa::getValorPorHoraPadrao();
+    }
     return this->valorPorHora;
 }
 
@@ -51,9 +53,19 @@ double Pessoa::getValorPorHoraPadrao() {
 }
 
 double Pessoa::getCusto(int dias) {
-    return dias * horasDiarias * valorPorHora;
+    if (dias <= 0) {
+        throw new invalid_argument ("Dias negativos");
+    } else if (recebeValorPadrao()) {
+        return dias * horasDiarias * getValorPorHoraPadrao();
+    } else {
+        return dias * horasDiarias * valorPorHora;
+    }
 }
 
 void Pessoa::imprimir() {
-    cout << "Pessoa: " << nome << " - R$" << valorPorHora << " - " << horasDiarias << "h por dia" << endl;
+    if (recebeValorPadrao()) {
+        cout << "Pessoa: " << nome << " - R$" << getValorPorHoraPadrao() << " - " << horasDiarias << "h por dia" << endl;
+    } else {
+        cout << "Pessoa: " << nome << " - R$" << valorPorHora << " - " << horasDiarias << "h por dia" << endl;
+    }
 }

@@ -1,18 +1,22 @@
-#include <iostream>
-#include <string>
-#include "Atividade.h"
+#ifndef ATIVIDADEDEESFORCOFIXO_H
+#define ATIVIDADEDEESFORCOFIXO_H
 
-using namespace std;
+#include "Atividade.h"
+#include <cmath>
 
 class AtividadeDeEsforcoFixo : public Atividade {
     public:
         AtividadeDeEsforcoFixo(string nome, int horasNecessarias);
         virtual ~AtividadeDeEsforcoFixo();
 
-        
         virtual int getHorasNecessarias();
         virtual int getDuracao();
 
     protected:
+    private:
         int horasNecessarias;
+        int horasRecursos;
+        int pessoas;
 };
+
+#endif // ATIVIDADEDEESFORCOFIXO_H

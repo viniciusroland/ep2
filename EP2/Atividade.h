@@ -1,19 +1,25 @@
-#include <iostream>
+#ifndef ATIVIDADE_H
+#define ATIVIDADE_H
+
 #include <string>
-#include "Recurso.h"
+#include <iostream>
+#include "Pessoa.h"
+#include "Ferramenta.h"
+#include <stdexcept>
 
 using namespace std;
 
-class Atividade{
+class Atividade
+{
     public:
         Atividade(string nome);
         virtual ~Atividade();
 
         virtual string getNome();
 
-        virtual void adicionar(Recurso * r);
+        virtual void adicionar(Recurso* r);
         virtual Recurso** getRecursos();
-        virtual int getQuantidadeDeRecursos();
+        virtual int getQuantidadeDeRecursos ();
 
         virtual int getDuracao() = 0;
         virtual double getCusto();
@@ -21,14 +27,17 @@ class Atividade{
         virtual void terminar(int duracaoReal);
         virtual bool estaTerminada();
 
-        virtual void imprimir()= 0;
-        static const int MAX_RECURSOS = 10;
+        virtual void imprimir();
+
+        static const int MAX_RECURSOS;
     protected:
         string nome;
+        int quantidadeDeRecursos = 0;
         Recurso** recursos;
-        static const int MAX_RECURSOS = 10;
-        int quantidadeDeRecursos;
         double custo;
-        double duracaoReal;
+        double duracao;
         bool terminada = false;
+    private:
 };
+
+#endif // ATIVIDADE_H
